@@ -9,7 +9,10 @@ exports.run = async (client, message, args) => {
     })
 
     if (result.includes(client.token)) result = result.replace(client.token, 'Not for your eyes')
-    if (result.length > 1990) console.log(result), result = 'Too long to be printed (content got console logged)'
+    if (result.length > 1990) {
+      console.log(result)
+      result = 'Too long to be printed (content got console logged)'
+    }
 
     message.channel.send(result, {code: 'js'})
 
@@ -17,7 +20,7 @@ exports.run = async (client, message, args) => {
     console.error(err)
     err = err.toString()
 
-    if (err.includes(client.token)) err = err.replace(client.token, 'Not for your eyes')
+    if (err.includes(message.token)) err = err.replace(client.token, 'Not for your eyes')
 
     return message.channel.send(err, {code: 'js'})
   }
